@@ -1,18 +1,22 @@
 import { useState } from 'react'
 import {nanoid} from 'nanoid'
+import Confetti from 'react-confetti-boom'
 import './App.css'
 import Die from"./components/Die"
 function App() {
   const[dice , setDice]=useState(generateAllNewDice());
+  
+     const gameWon = 
+      (dice.every(die =>die.isHeld) &&
+      dice.every(die =>die.value === dice[0].value))
+   
     function generateAllNewDice(){
        return new Array(10).fill(0)
-       .map(()=> ({ 
+       .map(()=> ({
         value:Math.ceil(Math.random()*6),
         isHeld:false,
         id:nanoid()
     }))}
-
-      
   
     const diceElements = dice.map((dieObj)=><Die 
         isHeld={dieObj.isHeld}
@@ -30,12 +34,10 @@ function App() {
     }
         function hold(id){
       setDice(oldDice => oldDice.map(
-        die=> die.id === id ? {...die,isHeld:!die.isHeld}:die
+        die => die.id === id ? {...die,isHeld:!die.isHeld}:die
         )
       )
     }
-
-    
 
   return (
     
@@ -51,7 +53,8 @@ function App() {
            <div className="dice">
              {diceElements}
            </div>
-           <button onClick={rollDice} className="roll-button">Roll</button>
+           <button onClick={rollDice} className="roll-button">{gameWon?"New Game":"Roll"}</button>
+           {gameWon&&<Confetti mode="fall" particleCount={200} colors={['#ff577f', '#ff884b', '#ffd384', '#fff9b0']} />}
          </div>
            
         </main>
