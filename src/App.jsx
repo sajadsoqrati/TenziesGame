@@ -27,10 +27,14 @@ function App() {
         />)
     
         function rollDice(){
+          if(!gameWon){
       setDice(oldDice=>oldDice.map(die=>
         die.isHeld?die:
         {...die,value:Math.ceil(Math.random()*6)}
-        ))
+        ))}
+        else{
+          setDice(generateAllNewDice())
+        }
     }
         function hold(id){
       setDice(oldDice => oldDice.map(
@@ -38,7 +42,9 @@ function App() {
         )
       )
     }
+    const buttonName = gameWon?"New Game":"Roll"
 
+  
   return (
     
       <body>
@@ -53,7 +59,7 @@ function App() {
            <div className="dice">
              {diceElements}
            </div>
-           <button onClick={rollDice} className="roll-button">{gameWon?"New Game":"Roll"}</button>
+           <button onClick={rollDice} className="roll-button">{buttonName}</button>
            {gameWon&&<Confetti mode="fall" particleCount={200} colors={['#ff577f', '#ff884b', '#ffd384', '#fff9b0']} />}
          </div>
            
