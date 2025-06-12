@@ -1,15 +1,19 @@
-import { useState } from 'react'
+import { useState,useRef,useEffect } from 'react'
 import {nanoid} from 'nanoid'
 import Confetti from 'react-confetti-boom'
 import './App.css'
 import Die from"./components/Die"
 function App() {
-  const[dice , setDice]=useState(generateAllNewDice());
+    const[dice , setDice]=useState(generateAllNewDice());
+    const buttonRef = useRef(null)
+
   
-     const gameWon = 
+    const gameWon = 
       (dice.every(die =>die.isHeld) &&
       dice.every(die =>die.value === dice[0].value))
-   
+    useEffect(()=>{
+      if(gameWon){buttonRef.current.focus()}
+    },[gameWon])
     function generateAllNewDice(){
        return new Array(10).fill(0)
        .map(()=> ({
@@ -59,7 +63,7 @@ function App() {
            <div className="dice">
              {diceElements}
            </div>
-           <button onClick={rollDice} className="roll-button">{buttonName}</button>
+           <button ref={buttonRef} onClick={rollDice} className="roll-button">{buttonName}</button>
            {gameWon&&<Confetti mode="fall" particleCount={200} colors={['#ff577f', '#ff884b', '#ffd384', '#fff9b0']} />}
          </div>
            
