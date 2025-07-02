@@ -5,13 +5,7 @@ Roll until all the dice show the same number. Click on a die to "freeze" it so i
 
 ---
 
-## 📸 Screenshots
 
-| Game in Progress | Game Won! 🎉 |
-|------------------|--------------|
-| ![Tenzies In Progress](./Screenshot%202025-07-02%20at%2012.44.21.png) | ![Tenzies Win](./Screenshot%202025-07-02%20at%2012.44.56.png) |
-
----
 
 ## 🎮 How to Play
 
