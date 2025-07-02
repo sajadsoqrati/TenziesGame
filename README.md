@@ -32,3 +32,7 @@ Roll until all the dice show the same number. Click on a die to "freeze" it so i
 	•	Conditional styling (active/frozen dice)
 	•	Game logic (check if all values match and are held)
 	•	Creating confetti effects using a React library
+
+## 🎲 🎮 lets play:
+
+https://sajad-tenzies.netlify.app/
